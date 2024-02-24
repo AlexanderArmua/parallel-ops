@@ -2,9 +2,9 @@
 
 ParallelOps is a high-performance Node.js library designed to parallelize high-order functions like map, reduce, and filter. Leveraging the power of the "workerpool" library, ParallelOps enables efficient data processing by distributing tasks across multiple worker threads, significantly enhancing computational performance and efficiency in Node.js applications.
 
-## Important notes
+## Project Status: In Development
 
-This project is current under development, don't use it on productive environments
+Please note that this project is currently in active development and has not yet reached a stable release.
 
 ## Features
 
@@ -25,16 +25,17 @@ npm install parallel-ops
 
 Here's a simple example to get you started with ParallelOps:
 
-```js
-const parallelOps = require('parallel-ops');
+```ts
+import { parallelMap } from '../src/map';
 
-// Example of parallel map
-parallelOps.map(dataArray, async (item) => {
-    // Perform operation
-    return transformedItem;
-}).then(result => {
-    console.log(result);
-});
+const mappedList = async (list: any[]) => {
+    const callback = String;
+
+    const result = await parallelMap(list, callback);
+
+    return result;
+}
+
 ```
 
 ## API Reference
