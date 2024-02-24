@@ -1,0 +1,45 @@
+{
+  "name": "parallel-ops",
+  "version": "0.0.1",
+  "description": "A Node.js library leveraging worker-threads to parallelize high-order functions (map, reduce, filter, etc.) for enhanced data processing performance.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "jest"
+  },
+  "dependencies": {
+    "workerpool": "^9.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "parallel",
+    "high-order-functions",
+    "async",
+    "performance",
+    "data-processing",
+    "worker-threads",
+    "concurrency",
+    "multithreading",
+    "nodejs",
+    "map",
+    "reduce",
+    "filter",
+    "asynchronous",
+    "computational",
+    "efficiency"
+  ],
+  "author": "Alexander Armua Abregu <alexanderarmua1@gmail.com>",
+  "license": "MIT"
+}
