@@ -1,9 +1,9 @@
-import { parallelMap } from '../src/map';
+import { parallelMap } from "@modules/map";
 
 const numberListToTest = [1, 2, 3];
 
 test('Should map a list of numbers to a list of string', async () => {
-    const callback = String;
+    const callback = (a: any) => String(a);
 
     const result = await parallelMap(numberListToTest, callback);
 
@@ -40,16 +40,6 @@ test('Should correctly apply a function with multiple operations', async () => {
     expect(result).toStrictEqual(expectedResult);
 });
 
-test('Should handle asynchronous callbacks', async () => {
-    const callback = async (n: number) => n * 2;
-
-    const result = await parallelMap(numberListToTest, callback);
-
-    const expectedResult = await Promise.all(numberListToTest.map(callback));
-
-    expect(result).toStrictEqual(expectedResult);
-});
-
 test('Should handle callbacks that return a promise', async () => {
     const callback = (n: number) => Promise.resolve(n + 2);
 
@@ -61,13 +51,12 @@ test('Should handle callbacks that return a promise', async () => {
 });
 
 test('Should throw or reject if any callback throws an error or rejects', async () => {
-    const error = new Error('Test error');
-    const callback = jest.fn((n: number) => {
-        if (n === 2) throw error;
+    const callback = (n: number) => {
+        if (n === 2) throw new Error('Test error');
         return n * 2;
-    });
+    };
 
-    await expect(parallelMap(numberListToTest, callback)).rejects.toThrow(error);
+    await expect(parallelMap(numberListToTest, callback)).rejects.toThrow(new Error('Test error'));
 });
 
 test('Should work with non-numeric arrays', async () => {
@@ -80,5 +69,3 @@ test('Should work with non-numeric arrays', async () => {
 
     expect(result).toStrictEqual(expectedResult);
 });
-
-

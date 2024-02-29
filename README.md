@@ -29,7 +29,7 @@ Here's a simple example to get you started with ParallelOps:
 import { parallelMap } from '../src/map';
 
 const mappedList = async (list: any[]) => {
-    const callback = String;
+    const callback = (a: any) => String(a);
 
     const result = await parallelMap(list, callback);
 
@@ -37,6 +37,19 @@ const mappedList = async (list: any[]) => {
 }
 
 ```
+
+## Notes
+### Functions to execute
+The functions and arguments must be static and stringifiable (and shouldn't include reference to other objects).
+
+For instance, some functions (like `String`) cannot be offloaded dinamically. 
+In this specific scenario to use `String`, you should create an anonym function `(foo: string) => String(foo)`, 
+or also you can create a dedicated worker in a separated script (WIP).  
+
+### Support
+- Currently we only support passing functions as callbacks.
+- In future versions we will be adding support for dedicated workers.
+- Not suported `async` callbacks
 
 ## API Reference
 ### WIP: map(array, function)
